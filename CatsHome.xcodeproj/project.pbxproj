@@ -18,6 +18,9 @@
 		4A89E3C0273738E10027B9BB /* CatsHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A89E3BF273738E10027B9BB /* CatsHomeTests.swift */; };
 		4A89E3CA273738E10027B9BB /* CatsHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A89E3C9273738E10027B9BB /* CatsHomeUITests.swift */; };
 		4A89E3CC273738E10027B9BB /* CatsHomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A89E3CB273738E10027B9BB /* CatsHomeUITestsLaunchTests.swift */; };
+		4A89E3D927373A070027B9BB /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A89E3D827373A070027B9BB /* GameOverScene.swift */; };
+		4A89E3DB27373A6F0027B9BB /* pewPoP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */; };
+		4A89E3DD27373A730027B9BB /* vaseFall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A89E3DC27373A730027B9BB /* vaseFall.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,10 @@
 		4A89E3C5273738E10027B9BB /* CatsHomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatsHomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A89E3C9273738E10027B9BB /* CatsHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsHomeUITests.swift; sourceTree = "<group>"; };
 		4A89E3CB273738E10027B9BB /* CatsHomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatsHomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4A89E3D827373A070027B9BB /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pewPoP.mp3; sourceTree = "<group>"; };
+		4A89E3DC27373A730027B9BB /* vaseFall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vaseFall.mp3; sourceTree = "<group>"; };
+		4A89E3E027373B120027B9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,14 +109,18 @@
 		4A89E3A4273738DE0027B9BB /* CatsHome */ = {
 			isa = PBXGroup;
 			children = (
+				4A89E3E027373B120027B9BB /* Info.plist */,
 				4A89E3A5273738DE0027B9BB /* AppDelegate.swift */,
 				4A89E3A7273738DE0027B9BB /* GameScene.sks */,
 				4A89E3A9273738DE0027B9BB /* Actions.sks */,
 				4A89E3AB273738DE0027B9BB /* GameScene.swift */,
+				4A89E3D827373A070027B9BB /* GameOverScene.swift */,
 				4A89E3AD273738DE0027B9BB /* GameViewController.swift */,
 				4A89E3AF273738DE0027B9BB /* Main.storyboard */,
 				4A89E3B2273738E10027B9BB /* Assets.xcassets */,
 				4A89E3B4273738E10027B9BB /* LaunchScreen.storyboard */,
+				4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */,
+				4A89E3DC27373A730027B9BB /* vaseFall.mp3 */,
 			);
 			path = CatsHome;
 			sourceTree = "<group>";
@@ -236,8 +247,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A89E3B1273738DE0027B9BB /* Main.storyboard in Resources */,
+				4A89E3DD27373A730027B9BB /* vaseFall.mp3 in Resources */,
 				4A89E3A8273738DE0027B9BB /* GameScene.sks in Resources */,
 				4A89E3B3273738E10027B9BB /* Assets.xcassets in Resources */,
+				4A89E3DB27373A6F0027B9BB /* pewPoP.mp3 in Resources */,
 				4A89E3B6273738E10027B9BB /* LaunchScreen.storyboard in Resources */,
 				4A89E3AA273738DE0027B9BB /* Actions.sks in Resources */,
 			);
@@ -266,6 +279,7 @@
 			files = (
 				4A89E3AC273738DE0027B9BB /* GameScene.swift in Sources */,
 				4A89E3AE273738DE0027B9BB /* GameViewController.swift in Sources */,
+				4A89E3D927373A070027B9BB /* GameOverScene.swift in Sources */,
 				4A89E3A6273738DE0027B9BB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +461,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WWC3UG9PT3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CatsHome/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -475,6 +490,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WWC3UG9PT3;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CatsHome/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
