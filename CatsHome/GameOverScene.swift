@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 
 
+
 class GameOverScene: SKScene {
     
     let restartLabel = SKLabelNode(fontNamed: "mangat")
@@ -41,24 +42,14 @@ class GameOverScene: SKScene {
         scoreLabel.zPosition = 1
     addChild(scoreLabel)
         
-//        var value = 0
-//        value = gameScore
-//
-//        let defaults = UserDefaults()
-//        var highScoreNumb = defaults.integer(forKey: "highScoreSaved")
-//
-//        if  value > highScoreNumb{
-//            highScoreNumb = value
-//            defaults.set(highScoreNumb, forKey: "highScoreSaved")
-//        }
-        
+
         
         let highScoreLabel = SKLabelNode(fontNamed: "mangat")
-        highScoreLabel.text = "HighScore: \(gameScore)"
+        highScoreLabel.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.4)
+        highScoreLabel.text = "HighScore: \(highScore)"
         highScoreLabel.fontSize = 140
         highScoreLabel.fontColor = .red
         highScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        highScoreLabel.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.4)
         highScoreLabel.zPosition = 1
         addChild(highScoreLabel)
         

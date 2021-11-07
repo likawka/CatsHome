@@ -10,6 +10,7 @@ import GameplayKit
 
 
 var gameScore = 0
+var highScore = 0
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -34,7 +35,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case preGame
         case inGame
         case afterGame
-        
     }
     
     var currentGameState = gameState.inGame
@@ -66,7 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playebleWigth = (size.height / maxAspectRatio)
         let margin = ((size.width - playebleWigth) / 2)
         
-        gameArea = CGRect(x: margin, y: 0, width:playebleWigth, height:size.height)
+        gameArea = CGRect(x: margin/3, y: 0, width:playebleWigth, height:size.height)
         
         super.init(size: size)
     }
@@ -130,6 +130,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if gameScore == 10 || gameScore == 30 || gameScore == 50{
             startNewLevel()
+        }
+        
+        if gameScore > highScore{
+            highScore = gameScore
         }
     }
     
@@ -395,7 +399,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
 
-    
     func changeScene(){
         let sceneToMoveTo = GameOverScene(size: self.size)
         sceneToMoveTo.scaleMode = self.scaleMode
@@ -403,7 +406,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let myTransition = SKTransition.fade(withDuration: 0.5)
         self.view!.presentScene(sceneToMoveTo, transition: myTransition)
     }
-
+    
 }
  
 
