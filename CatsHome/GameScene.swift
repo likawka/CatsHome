@@ -57,8 +57,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return random() * (max - min) + min
     }
     
-    
-
     var gameArea: CGRect
     
     override init(size: CGSize) {
@@ -66,7 +64,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playebleWigth = (size.height / maxAspectRatio)
         let margin = ((size.width - playebleWigth) / 2)
         
-        gameArea = CGRect(x: margin/3, y: 0, width:playebleWigth, height:size.height)
+        gameArea = CGRect(x: margin, y: 0, width:playebleWigth, height:size.height)
         
         super.init(size: size)
     }
@@ -128,7 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameScore += 1
         scoreLabel.text = "Score: \(gameScore)"
         
-        if gameScore == 10 || gameScore == 30 || gameScore == 50{
+        if gameScore == 10 || gameScore == 20 || gameScore == 40 || gameScore == 50 {
             startNewLevel()
         }
         
@@ -241,9 +239,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         switch levelNumber{
         case 1: levelDuration =  3 // 1.2
         case 2: levelDuration =  2  // 0.5
-        case 3: levelDuration =  1
-        case 4: levelDuration =  0.8
-        case 5: levelDuration =  0.5
+        case 3: levelDuration =  0.8
+        case 4: levelDuration =  0.5
         default:
             levelDuration = 0.5
             print("Cannot find level info")
@@ -290,7 +287,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let randomXStart = random(min: gameArea.minX, max: gameArea.maxX)
         let randomXEnd = random(min: gameArea.minX, max: gameArea.maxX)
         let startPoint = CGPoint(x: randomXStart, y: self.size.height*1.2)
-        let endPoint = CGPoint(x: randomXEnd, y: -self.size.height*1.2)
+        let endPoint = CGPoint(x: randomXEnd/3, y: -self.size.height*1.2)
         
         let enemy = SKSpriteNode(imageNamed: "enemyVase")
         enemy.name = "Enemy"
