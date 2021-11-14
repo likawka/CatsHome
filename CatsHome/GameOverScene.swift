@@ -42,6 +42,14 @@ class GameOverScene: SKScene {
         scoreLabel.zPosition = 1
     addChild(scoreLabel)
         
+        
+        let defaults = UserDefaults()
+        var highScore = defaults.integer(forKey: "highScoreSaved")
+        
+        if gameScore > highScore{
+            highScore = gameScore
+            defaults.set(highScore, forKey: "highScoreSaved")
+        }
 
         
         let highScoreLabel = SKLabelNode(fontNamed: "mangat")

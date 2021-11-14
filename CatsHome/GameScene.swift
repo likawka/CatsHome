@@ -10,7 +10,8 @@ import GameplayKit
 
 
 var gameScore = 0
-var highScore = 0
+//var highScore = 0
+
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -130,9 +131,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             startNewLevel()
         }
         
-        if gameScore > highScore{
-            highScore = gameScore
-        }
+        
+//        let defaults = UserDefaults()
+//        highScore = defaults.integer(forKey: "highScoreSaved")
+//        
+//        if gameScore > highScore{
+//            highScore = gameScore
+//            defaults.set(highScore, forKey: "highScoreSaved")
+//        }
+        
     }
     
     func loseLives(){
