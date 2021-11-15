@@ -16,6 +16,7 @@ class GameOverScene: SKScene {
     let restartLabel = SKLabelNode(fontNamed: "mangat")
 
     override func didMove(to view: SKView) {
+        
     
     let background = SKSpriteNode(imageNamed: "gameOverBack")
     background.size = self.size
@@ -27,16 +28,16 @@ class GameOverScene: SKScene {
     let gameOverLabel = SKLabelNode(fontNamed: "mangat")
         gameOverLabel.text = "Game Over"
         gameOverLabel.fontSize = 172 // 170
-        gameOverLabel.fontColor = .white
+        gameOverLabel.fontColor = .black
         gameOverLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        gameOverLabel.position = CGPoint(x: self.size.width * 0.21, y: self.size.height * 0.7)
+        gameOverLabel.position = CGPoint(x: self.size.width * 0.21, y: self.size.height * 0.65)
         gameOverLabel.zPosition = 1
     addChild(gameOverLabel)
         
     let scoreLabel = SKLabelNode(fontNamed: "mangat")
         scoreLabel.text = "Score: \(gameScore)"
         scoreLabel.fontSize = 140
-        scoreLabel.fontColor = .white
+        scoreLabel.fontColor = .black
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         scoreLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.5)
         scoreLabel.zPosition = 1
@@ -53,19 +54,19 @@ class GameOverScene: SKScene {
 
         
         let highScoreLabel = SKLabelNode(fontNamed: "mangat")
-        highScoreLabel.position = CGPoint(x: self.size.width * 0.24, y: self.size.height * 0.4)
+        highScoreLabel.position = CGPoint(x: self.size.width * 0.22, y: self.size.height * 0.4)
         highScoreLabel.text = "HighScore: \(highScore)"
         highScoreLabel.fontSize = 140
-        highScoreLabel.fontColor = .white
+        highScoreLabel.fontColor = .black
         highScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         highScoreLabel.zPosition = 1
         addChild(highScoreLabel)
         
         restartLabel.text = "Restart"
         restartLabel.fontSize = 160
-        restartLabel.fontColor = .white
+        restartLabel.fontColor = .black
         restartLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        restartLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.25)
+        restartLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.26)
         restartLabel.zPosition = 1
         addChild(restartLabel)
     
@@ -86,5 +87,7 @@ class GameOverScene: SKScene {
             
         }
     }
+    
+    
 }
     

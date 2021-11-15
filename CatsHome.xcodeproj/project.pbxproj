@@ -21,6 +21,7 @@
 		4A89E3D927373A070027B9BB /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A89E3D827373A070027B9BB /* GameOverScene.swift */; };
 		4A89E3DB27373A6F0027B9BB /* pewPoP.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */; };
 		4A89E3DD27373A730027B9BB /* vaseFall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A89E3DC27373A730027B9BB /* vaseFall.mp3 */; };
+		4AC3D541274308E30092451B /* GameStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3D540274308E30092451B /* GameStartScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pewPoP.mp3; sourceTree = "<group>"; };
 		4A89E3DC27373A730027B9BB /* vaseFall.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = vaseFall.mp3; sourceTree = "<group>"; };
 		4A89E3E027373B120027B9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4AC3D540274308E30092451B /* GameStartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				4A89E3A9273738DE0027B9BB /* Actions.sks */,
 				4A89E3AB273738DE0027B9BB /* GameScene.swift */,
 				4A89E3D827373A070027B9BB /* GameOverScene.swift */,
+				4AC3D540274308E30092451B /* GameStartScene.swift */,
 				4A89E3AD273738DE0027B9BB /* GameViewController.swift */,
 				4A89E3AF273738DE0027B9BB /* Main.storyboard */,
 				4A89E3B2273738E10027B9BB /* Assets.xcassets */,
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AC3D541274308E30092451B /* GameStartScene.swift in Sources */,
 				4A89E3AC273738DE0027B9BB /* GameScene.swift in Sources */,
 				4A89E3AE273738DE0027B9BB /* GameViewController.swift in Sources */,
 				4A89E3D927373A070027B9BB /* GameOverScene.swift in Sources */,

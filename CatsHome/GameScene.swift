@@ -17,7 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     let scoreLabel = SKLabelNode(fontNamed:"mangat")
     
-    var livesNumb = 3
+    var livesNumb = 5 
     let livesLabel = SKLabelNode(fontNamed:"mangat")
     
     var levelNumber = 0
@@ -61,11 +61,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameArea: CGRect
     
     override init(size: CGSize) {
-        let maxAspectRatio: CGFloat = (16.0/13.0) // 19.0/15.0
+        let maxAspectRatio: CGFloat = (19.0/15.0) 
         let playebleWigth = (size.height / maxAspectRatio)
         let margin = ((size.width - playebleWigth) / 2.0)
         
-        gameArea = CGRect(x: margin, y: 0, width:playebleWigth, height:size.height)
+        gameArea = CGRect(x: margin / 2, y: 0, width:playebleWigth, height:size.height)
         
         super.init(size: size)
     }
@@ -119,7 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(scoreLabel)
         
         
-        livesLabel.text = "Lives: 3"
+        livesLabel.text = "Lives: 5"
         livesLabel.fontSize = 60
         livesLabel.fontColor = .black
         livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
@@ -139,11 +139,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tapToStartLabel.alpha = 0
         tapToStartLabel.zPosition = 100
         addChild(tapToStartLabel)
-        
+
         let fadeInAction = SKAction.fadeIn(withDuration: 0.3)
         tapToStartLabel.run(fadeInAction)
-        
-//        startNewLevel()
+
+        startNewLevel()
     }
     
     var lastUpdateTime: TimeInterval = 0
@@ -186,18 +186,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startGame(){
-        
+
         currentGameState = gameState.inGame
-        
+
         let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
         let deleteAction = SKAction.removeFromParent()
         let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
         tapToStartLabel.run(deleteSequence)
-        
+
         let moveCatOnToScreenAction = SKAction.moveTo(y: self.size.width/3.5, duration: 0.5)
         let startLevelAction = SKAction.run(startNewLevel)
         let startLevelSequence = SKAction.sequence([moveCatOnToScreenAction, startLevelAction])
-        
+
         player.run(startLevelSequence)
     }
     
@@ -476,6 +476,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let myTransition = SKTransition.fade(withDuration: 0.5)
         self.view!.presentScene(sceneToMoveTo, transition: myTransition)
     }
+    
+    
     
 }
  
