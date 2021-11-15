@@ -10,26 +10,26 @@ import GameplayKit
 
 
 var gameScore = 0
-//var highScore = 0
 
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
         
-    let scoreLabel = SKLabelNode(fontNamed:"mangat.ttf")
+    let scoreLabel = SKLabelNode(fontNamed:"mangat")
     
     var livesNumb = 3
-    let livesLabel = SKLabelNode(fontNamed:"mangat.ttf")
+    let livesLabel = SKLabelNode(fontNamed:"mangat")
     
     var levelNumber = 0
     
     
     var fingerLocation = CGPoint()
-        
     var player = SKSpriteNode(imageNamed: "playerCat")
    
     let bulletSound = SKAction.playSoundFileNamed("pewPoP.mp3", waitForCompletion: false)
     let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
+    
+    let tapToStartLabel = SKLabelNode(fontNamed: "mangat")
     
     
     enum gameState{
@@ -38,7 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         case afterGame
     }
     
-    var currentGameState = gameState.inGame
+    var currentGameState = gameState.preGame
     
     
     
@@ -61,9 +61,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameArea: CGRect
     
     override init(size: CGSize) {
-        let maxAspectRatio: CGFloat = (19.0/15.0)
+        let maxAspectRatio: CGFloat = (16.0/13.0) // 19.0/15.0
         let playebleWigth = (size.height / maxAspectRatio)
-        let margin = ((size.width - playebleWigth) / 2)
+        let margin = ((size.width - playebleWigth) / 2.0)
         
         gameArea = CGRect(x: margin, y: 0, width:playebleWigth, height:size.height)
         
@@ -83,15 +83,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         
+        for i in 0 ... 1{
         let background = SKSpriteNode(imageNamed: "background")
         background.size = self.size
-        background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        background.anchorPoint = CGPoint(x: 0.5, y: 0)
+        background.position = CGPoint(x: self.size.width/2, y: self.size.height*CGFloat(i))
         background.zPosition = 0
+        background.name = "Background"
         self.addChild(background)
-    
-    
+        }
+        
         player.setScale(1)
-        player.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.2)
+        player.position = CGPoint(x: self.size.width/2, y: -self.size.height )
+        
+// x:self.frame.midX, y:player.size.height/2 + 10
+// x: self.size.width/2, y: self.size.height * 0.2
+        
         player.zPosition = 2
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
@@ -105,22 +112,68 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 60
-        scoreLabel.fontColor = .white
+        scoreLabel.fontColor = .black
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        scoreLabel.position = CGPoint(x: self.size.width * 0.20, y: self.size.height * 0.9)
+        scoreLabel.position = CGPoint(x: self.size.width * 0.20, y: self.size.height + scoreLabel.frame.size.height)
         scoreLabel.zPosition = 100
         addChild(scoreLabel)
         
         
         livesLabel.text = "Lives: 3"
         livesLabel.fontSize = 60
-        livesLabel.fontColor = .white
+        livesLabel.fontColor = .black
         livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        livesLabel.position = CGPoint(x: self.size.width * 0.67, y: self.size.height * 0.9)
+        livesLabel.position = CGPoint(x: self.size.width * 0.67, y: self.size.height + livesLabel.frame.size.height)
         livesLabel.zPosition = 100
         addChild(livesLabel)
         
-        startNewLevel()
+        let moveOnToScreenAction = SKAction.moveTo(y: self.size.height * 0.9, duration: 0.3)
+        scoreLabel.run(moveOnToScreenAction)
+        livesLabel.run(moveOnToScreenAction)
+        
+        tapToStartLabel.text = "Tap to Begin"
+        tapToStartLabel.fontSize = 130
+        tapToStartLabel.fontColor = .black
+        tapToStartLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        tapToStartLabel.position = CGPoint(x: self.size.width * 0.28, y: self.size.height * 0.45)
+        tapToStartLabel.alpha = 0
+        tapToStartLabel.zPosition = 100
+        addChild(tapToStartLabel)
+        
+        let fadeInAction = SKAction.fadeIn(withDuration: 0.3)
+        tapToStartLabel.run(fadeInAction)
+        
+//        startNewLevel()
+    }
+    
+    var lastUpdateTime: TimeInterval = 0
+    var delfaFrameTime: TimeInterval = 0
+    var amountToMovePerSecond: CGFloat = 600.0
+    
+    override func update(_ currentTime: TimeInterval) {
+        
+        if lastUpdateTime == 0{
+            lastUpdateTime = currentTime
+        } else {
+            delfaFrameTime = currentTime - lastUpdateTime
+            lastUpdateTime = currentTime
+        }
+        
+        let amountToMoveBackground = amountToMovePerSecond * CGFloat(delfaFrameTime)
+        self.enumerateChildNodes(withName: "Background"){
+            background, stop in
+           
+            if self.currentGameState == gameState.inGame{
+            background.position.y -= amountToMoveBackground
+            }
+            
+            if background.position.y < (-self.size.height){
+               background.position.y += self.size.height*2
+          
+            }
+            
+        }
+        
     }
     
     func addScore(){
@@ -130,17 +183,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if gameScore == 10 || gameScore == 20 || gameScore == 40 || gameScore == 50 {
             startNewLevel()
         }
-        
-        
-//        let defaults = UserDefaults()
-//        highScore = defaults.integer(forKey: "highScoreSaved")
-//        
-//        if gameScore > highScore{
-//            highScore = gameScore
-//            defaults.set(highScore, forKey: "highScoreSaved")
-//        }
-        
     }
+    
+    func startGame(){
+        
+        currentGameState = gameState.inGame
+        
+        let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
+        let deleteAction = SKAction.removeFromParent()
+        let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
+        tapToStartLabel.run(deleteSequence)
+        
+        let moveCatOnToScreenAction = SKAction.moveTo(y: self.size.width/3.5, duration: 0.5)
+        let startLevelAction = SKAction.run(startNewLevel)
+        let startLevelSequence = SKAction.sequence([moveCatOnToScreenAction, startLevelAction])
+        
+        player.run(startLevelSequence)
+    }
+    
+  
     
     func loseLives(){
         
@@ -333,11 +394,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // стріляє, коли тикаєш
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
         for touch: AnyObject in touches {
                 fingerLocation = touch.location(in: self)
 
             }
-        if currentGameState == gameState.inGame{
+        
+        if currentGameState == gameState.preGame{
+            startGame()
+        }
+        else if currentGameState == gameState.inGame{
         fireBullet()
         }
     }

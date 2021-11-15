@@ -27,7 +27,7 @@ class GameOverScene: SKScene {
     let gameOverLabel = SKLabelNode(fontNamed: "mangat")
         gameOverLabel.text = "Game Over"
         gameOverLabel.fontSize = 172 // 170
-        gameOverLabel.fontColor = .red
+        gameOverLabel.fontColor = .white
         gameOverLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         gameOverLabel.position = CGPoint(x: self.size.width * 0.21, y: self.size.height * 0.7)
         gameOverLabel.zPosition = 1
@@ -36,7 +36,7 @@ class GameOverScene: SKScene {
     let scoreLabel = SKLabelNode(fontNamed: "mangat")
         scoreLabel.text = "Score: \(gameScore)"
         scoreLabel.fontSize = 140
-        scoreLabel.fontColor = .red
+        scoreLabel.fontColor = .white
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         scoreLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.5)
         scoreLabel.zPosition = 1
@@ -53,17 +53,17 @@ class GameOverScene: SKScene {
 
         
         let highScoreLabel = SKLabelNode(fontNamed: "mangat")
-        highScoreLabel.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.4)
+        highScoreLabel.position = CGPoint(x: self.size.width * 0.24, y: self.size.height * 0.4)
         highScoreLabel.text = "HighScore: \(highScore)"
         highScoreLabel.fontSize = 140
-        highScoreLabel.fontColor = .red
+        highScoreLabel.fontColor = .white
         highScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         highScoreLabel.zPosition = 1
         addChild(highScoreLabel)
         
         restartLabel.text = "Restart"
         restartLabel.fontSize = 160
-        restartLabel.fontColor = .red
+        restartLabel.fontColor = .white
         restartLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         restartLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.25)
         restartLabel.zPosition = 1
