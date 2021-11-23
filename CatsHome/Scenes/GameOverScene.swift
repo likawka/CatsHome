@@ -14,34 +14,34 @@ import GameplayKit
 class GameOverScene: SKScene {
     
     let restartLabel = SKLabelNode(fontNamed: "mangat")
-
+    
     override func didMove(to view: SKView) {
         
-    
-    let background = SKSpriteNode(imageNamed: "gameOverBack")
-    background.size = self.size
-    background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-    background.zPosition = 0
-    self.addChild(background)
+        
+        let background = SKSpriteNode(imageNamed: "gameOverBack")
+        background.size = self.size
+        background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
+        background.zPosition = 0
+        self.addChild(background)
         
         
-    let gameOverLabel = SKLabelNode(fontNamed: "mangat")
+        let gameOverLabel = SKLabelNode(fontNamed: "mangat")
         gameOverLabel.text = "Game Over"
         gameOverLabel.fontSize = 172 // 170
         gameOverLabel.fontColor = .black
         gameOverLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         gameOverLabel.position = CGPoint(x: self.size.width * 0.21, y: self.size.height * 0.65)
         gameOverLabel.zPosition = 1
-    addChild(gameOverLabel)
+        addChild(gameOverLabel)
         
-    let scoreLabel = SKLabelNode(fontNamed: "mangat")
+        let scoreLabel = SKLabelNode(fontNamed: "mangat")
         scoreLabel.text = "Score: \(gameScore)"
         scoreLabel.fontSize = 140
         scoreLabel.fontColor = .black
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
         scoreLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.5)
         scoreLabel.zPosition = 1
-    addChild(scoreLabel)
+        addChild(scoreLabel)
         
         
         let defaults = UserDefaults()
@@ -51,7 +51,7 @@ class GameOverScene: SKScene {
             highScore = gameScore
             defaults.set(highScore, forKey: "highScoreSaved")
         }
-
+        
         
         let highScoreLabel = SKLabelNode(fontNamed: "mangat")
         highScoreLabel.position = CGPoint(x: self.size.width * 0.22, y: self.size.height * 0.4)
@@ -69,7 +69,7 @@ class GameOverScene: SKScene {
         restartLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.26)
         restartLabel.zPosition = 1
         addChild(restartLabel)
-    
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -83,11 +83,11 @@ class GameOverScene: SKScene {
                 self.view!.presentScene(sceneToMoveTo, transition: myTransition)
                 
             }
-                
+            
             
         }
     }
     
     
 }
-    
+
