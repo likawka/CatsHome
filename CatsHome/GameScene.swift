@@ -24,8 +24,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     var fingerLocation = CGPoint()
-    
-    let bulletSound = SKAction.playSoundFileNamed("pewPoP0.mp3", waitForCompletion: false)
     let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
     
     let tapToStartLabel = SKLabelNode(fontNamed: "mangat")
@@ -306,28 +304,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // розробка кігтиків і атаки + звук
     func fireBullet() {
-        
-        let bullet = SKSpriteNode(imageNamed: "bullet")
-        bullet.name = "Bullet"
-        bullet.setScale(1)
-        bullet.position = self.player.playerSprite.position
-        bullet.zPosition = 1
-        
-        bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size)
-        bullet.physicsBody!.affectedByGravity = false
-        
-        bullet.physicsBody!.categoryBitMask = PhysicsCategories.Bullet
-        bullet.physicsBody!.collisionBitMask = PhysicsCategories.None
-        bullet.physicsBody!.contactTestBitMask  = PhysicsCategories.Enemy
-        
-        self.addChild(bullet)
-        
-        let moveBullet = SKAction.moveTo(y: self.size.height + bullet.size.height, duration: 1)
-        let deleteBullet = SKAction.removeFromParent()
-        let bulletSequence = SKAction.sequence([moveBullet,bulletSound, deleteBullet])
-        
-        bullet.run(bulletSequence)
-        
+        player.createBullet { bullet in
+            self.addChild(bullet.bullet)
+            bullet.start(screenSize: self.size)
+        }
     }
     
     func spawnEnemy() {

@@ -23,6 +23,7 @@
 		4A89E3DD27373A730027B9BB /* vaseFall.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4A89E3DC27373A730027B9BB /* vaseFall.mp3 */; };
 		4AC1C9E6274D529B00396D79 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9E5274D529B00396D79 /* Player.swift */; };
 		4AC1C9E8274D595600396D79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9E7274D595600396D79 /* Constants.swift */; };
+		4AC1C9EA274D61F400396D79 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9E9274D61F400396D79 /* Bullet.swift */; };
 		4AC3D541274308E30092451B /* GameStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3D540274308E30092451B /* GameStartScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		4A89E3E027373B120027B9BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4AC1C9E5274D529B00396D79 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		4AC1C9E7274D595600396D79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4AC1C9E9274D61F400396D79 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		4AC3D540274308E30092451B /* GameStartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +132,7 @@
 				4A89E3DC27373A730027B9BB /* vaseFall.mp3 */,
 				4AC1C9E5274D529B00396D79 /* Player.swift */,
 				4AC1C9E7274D595600396D79 /* Constants.swift */,
+				4AC1C9E9274D61F400396D79 /* Bullet.swift */,
 			);
 			path = CatsHome;
 			sourceTree = "<group>";
@@ -293,6 +296,7 @@
 				4AC1C9E8274D595600396D79 /* Constants.swift in Sources */,
 				4AC1C9E6274D529B00396D79 /* Player.swift in Sources */,
 				4A89E3A6273738DE0027B9BB /* AppDelegate.swift in Sources */,
+				4AC1C9EA274D61F400396D79 /* Bullet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

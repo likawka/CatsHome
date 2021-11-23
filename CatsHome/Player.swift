@@ -55,10 +55,8 @@ class Player {
         self.playerSprite.run(action)
     }
     
-//    func moveToStart() {
-//        let moveCatOnToScreenAction = SKAction.moveTo(y: self.playerSprite.size.width/3.5, duration: 0.5)
-//        let startLevelSequence = SKAction.sequence([moveCatOnToScreenAction, startLevelAction])
-//        
-//        self.playerSprite.run(startLevelSequence)
-//    }
+    func createBullet(onCreate: (Bullet) -> Void) {
+        let bullet = Bullet(position: playerSprite.position)
+        onCreate(bullet)
+    }
 }
