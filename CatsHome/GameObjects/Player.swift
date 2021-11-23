@@ -8,15 +8,15 @@
 import Foundation
 import SpriteKit
 
-class Player {
+class Player: SKNode {
     let sprite: SKSpriteNode
     enum FacingDirection {
         case left
         case right
     }
     
-    init() {
-        self.sprite = SKSpriteNode(imageNamed: "playerCat")
+    override init() {
+        sprite = SKSpriteNode(imageNamed: "playerCat")
         sprite.setScale(1)
         
         sprite.zPosition = 2
@@ -27,6 +27,13 @@ class Player {
         sprite.physicsBody!.categoryBitMask = PhysicsCategories.Player
         sprite.physicsBody!.collisionBitMask = PhysicsCategories.None
         sprite.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
+        
+        super.init()
+        self.addChild(sprite)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("not implemented, doesn't matter")
     }
     
     func getPosition() -> CGPoint {

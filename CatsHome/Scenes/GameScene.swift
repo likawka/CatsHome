@@ -58,9 +58,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hud.start()
         
         // create player
-        self.player = Player()
-        self.player.sprite.position = CGPoint(x: self.size.width/2, y: -self.size.height )
-        self.addChild(self.player.sprite)
+        player = Player()
+        player.moveTo(point: CGPoint(x: self.size.width/2, y: -self.size.height))
+        self.addChild(player)
         
         startNewLevel()
     }
@@ -189,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func spawnExplosion(spawnPosition: CGPoint ){
         let explosion = Explosion(spawnPosition: spawnPosition)
-        self.addChild(explosion.sprite)
+        self.addChild(explosion)
     }
     
     
@@ -225,14 +225,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // розробка кігтиків і атаки + звук
     func fireBullet() {
         player.createBullet { bullet in
-            self.addChild(bullet.sprite)
+            self.addChild(bullet)
             bullet.start(screenSize: self.size)
         }
     }
     
     func spawnEnemy() {
         let enemy = Enemy(gameArea: gameArea)
-        self.addChild(enemy.sprite)
+        self.addChild(enemy)
         enemy.start {
             self.loseLives()
         }

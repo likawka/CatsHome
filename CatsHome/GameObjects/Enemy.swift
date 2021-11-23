@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class Enemy {
+class Enemy: SKNode {
     let sprite: SKSpriteNode
     let endPoint: CGPoint
     let startPoint: CGPoint
@@ -31,6 +31,19 @@ class Enemy {
         sprite.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
         sprite.physicsBody!.collisionBitMask = PhysicsCategories.None
         sprite.physicsBody!.contactTestBitMask = PhysicsCategories.Bullet | PhysicsCategories.Player
+        
+        super.init()
+        self.addChild(sprite)
+    }
+    
+    // SKNode
+    //  |    \
+    // Player HUD
+    
+    // 
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("not implemented, doesn't matter")
     }
     
     func start(onLoseLife: @escaping () -> Void) {

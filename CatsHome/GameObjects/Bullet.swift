@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class Bullet {
+class Bullet: SKNode {
     let sprite: SKSpriteNode
     let bulletSound = SKAction.playSoundFileNamed("pewPoP0.mp3", waitForCompletion: false)
     
@@ -25,6 +25,13 @@ class Bullet {
         sprite.physicsBody!.categoryBitMask = PhysicsCategories.Bullet
         sprite.physicsBody!.collisionBitMask = PhysicsCategories.None
         sprite.physicsBody!.contactTestBitMask  = PhysicsCategories.Enemy
+        
+        super.init()
+        self.addChild(sprite)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("not implemented, doesn't matter")
     }
     
     func start(screenSize: CGSize) {

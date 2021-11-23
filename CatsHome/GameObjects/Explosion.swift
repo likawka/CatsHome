@@ -8,7 +8,7 @@
 import Foundation
 import SpriteKit
 
-class Explosion {
+class Explosion: SKNode {
     let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
     let sprite: SKSpriteNode
     
@@ -25,5 +25,12 @@ class Explosion {
         let explosionSequence = SKAction.sequence([explosionSound, scaleIn, fadeOut, delete])
         
         sprite.run(explosionSequence)
+        
+        super.init()
+        self.addChild(sprite)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("not implemented, doesn't matter")
     }
 }
