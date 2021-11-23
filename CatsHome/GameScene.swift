@@ -26,7 +26,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var fingerLocation = CGPoint()
     var player = SKSpriteNode(imageNamed: "playerCat")
    
-    let bulletSound = SKAction.playSoundFileNamed("pewPoP.mp3", waitForCompletion: false)
+    let bulletSound = SKAction.playSoundFileNamed("pewPoP0.mp3", waitForCompletion: false)
     let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
     
     let tapToStartLabel = SKLabelNode(fontNamed: "mangat")
