@@ -14,20 +14,11 @@ var gameScore = 0
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
-    let scoreLabel = SKLabelNode(fontNamed:"mangat")
-    
     var livesNumb = 5
-    let livesLabel = SKLabelNode(fontNamed:"mangat")
-    
     var levelNumber = 0
-    
-    
     var fingerLocation = CGPoint()
-    
-    let tapToStartLabel = SKLabelNode(fontNamed: "mangat")
     var player: Player
-    
+    let hud: HUD
     
     enum gameState{
         case preGame
@@ -36,7 +27,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var currentGameState = gameState.preGame
-    
     var gameArea: CGRect
     
     override init(size: CGSize) {
@@ -46,6 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameArea = CGRect(x: margin / 2, y: 0, width:playebleWigth, height:size.height)
         self.player = Player()
+        self.hud = HUD(size: size)
         
         super.init(size: size)
     }
@@ -54,8 +45,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
     // розміщення бекграунда + гравець
     override func didMove(to view: SKView) {
         
@@ -63,53 +52,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         
-        for i in 0 ... 1{
-            let background = SKSpriteNode(imageNamed: "background")
-            background.size = self.size
-            background.anchorPoint = CGPoint(x: 0.5, y: 0)
-            background.position = CGPoint(x: self.size.width/2, y: self.size.height*CGFloat(i))
-            background.zPosition = 0
-            background.name = "Background"
-            self.addChild(background)
-        }
+        
+        // add hud
+        self.addChild(hud)
+        hud.start()
         
         // create player
         self.player = Player()
         self.player.sprite.position = CGPoint(x: self.size.width/2, y: -self.size.height )
         self.addChild(self.player.sprite)
-        
-        scoreLabel.text = "Score: 0"
-        scoreLabel.fontSize = 60
-        scoreLabel.fontColor = .black
-        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        scoreLabel.position = CGPoint(x: self.size.width * 0.20, y: self.size.height + scoreLabel.frame.size.height)
-        scoreLabel.zPosition = 100
-        addChild(scoreLabel)
-        
-        
-        livesLabel.text = "Lives: 5"
-        livesLabel.fontSize = 60
-        livesLabel.fontColor = .black
-        livesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        livesLabel.position = CGPoint(x: self.size.width * 0.67, y: self.size.height + livesLabel.frame.size.height)
-        livesLabel.zPosition = 100
-        addChild(livesLabel)
-        
-        let moveOnToScreenAction = SKAction.moveTo(y: self.size.height * 0.9, duration: 0.3)
-        scoreLabel.run(moveOnToScreenAction)
-        livesLabel.run(moveOnToScreenAction)
-        
-        tapToStartLabel.text = "Tap to Begin"
-        tapToStartLabel.fontSize = 130
-        tapToStartLabel.fontColor = .black
-        tapToStartLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        tapToStartLabel.position = CGPoint(x: self.size.width * 0.28, y: self.size.height * 0.45)
-        tapToStartLabel.alpha = 0
-        tapToStartLabel.zPosition = 100
-        addChild(tapToStartLabel)
-        
-        let fadeInAction = SKAction.fadeIn(withDuration: 0.3)
-        tapToStartLabel.run(fadeInAction)
         
         startNewLevel()
     }
@@ -146,7 +97,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addScore(){
         gameScore += 1
-        scoreLabel.text = "Score: \(gameScore)"
+        hud.setScore(score: gameScore)
         
         if gameScore == 10 || gameScore == 20 || gameScore == 40 || gameScore == 50 {
             startNewLevel()
@@ -157,10 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         currentGameState = gameState.inGame
         
-        let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
-        let deleteAction = SKAction.removeFromParent()
-        let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
-        tapToStartLabel.run(deleteSequence)
+        hud.hideTapToStart()
         
         let moveCatOnToScreenAction = SKAction.moveTo(y: self.size.width/3.5, duration: 0.5)
         let startLevelAction = SKAction.run(startNewLevel)
@@ -174,12 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func loseLives(){
         
         livesNumb -= 1
-        livesLabel.text = "Lives: \(livesNumb)"
-        
-        let scaleUp = SKAction.scale(to: 1.5, duration: 0.2)
-        let scaleDown = SKAction.scale(to: 1, duration: 0.2)
-        let scaleSequence = SKAction.sequence([scaleUp, scaleDown])
-        livesLabel.run(scaleSequence)
+        hud.setLivesCount(livesCount: livesNumb)
         
         if livesNumb == 0{
             runGameOver()
