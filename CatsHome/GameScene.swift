@@ -24,12 +24,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     var fingerLocation = CGPoint()
-    var player = SKSpriteNode(imageNamed: "playerCat")
     
     let bulletSound = SKAction.playSoundFileNamed("pewPoP0.mp3", waitForCompletion: false)
     let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
     
     let tapToStartLabel = SKLabelNode(fontNamed: "mangat")
+    var player: Player
     
     
     enum gameState{
@@ -39,15 +39,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var currentGameState = gameState.preGame
-    
-    
-    
-    struct PhysicsCategories{
-        static let None   : UInt32 = 0
-        static let Player : UInt32 = 0b1 //1 binary
-        static let Bullet : UInt32 = 0b10 //2 binary
-        static let Enemy   : UInt32 = 0b100 //4 binary
-    }
     
     
     func random() -> CGFloat{
@@ -66,6 +57,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let margin = ((size.width - playebleWigth) / 2.0)
         
         gameArea = CGRect(x: margin / 2, y: 0, width:playebleWigth, height:size.height)
+        self.player = Player()
         
         super.init(size: size)
     }
@@ -93,22 +85,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(background)
         }
         
-        player.setScale(1)
-        player.position = CGPoint(x: self.size.width/2, y: -self.size.height )
-        
-        // x:self.frame.midX, y:player.size.height/2 + 10
-        // x: self.size.width/2, y: self.size.height * 0.2
-        
-        player.zPosition = 2
-        
-        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
-        player.physicsBody!.affectedByGravity = false
-        
-        player.physicsBody!.categoryBitMask = PhysicsCategories.Player
-        player.physicsBody!.collisionBitMask = PhysicsCategories.None
-        player.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
-        
-        self.addChild(player)
+        // create player
+        self.player = Player()
+        self.player.playerSprite.position = CGPoint(x: self.size.width/2, y: -self.size.height )
+        self.addChild(self.player.playerSprite)
         
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 60
@@ -198,7 +178,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let startLevelAction = SKAction.run(startNewLevel)
         let startLevelSequence = SKAction.sequence([moveCatOnToScreenAction, startLevelAction])
         
-        player.run(startLevelSequence)
+        self.player.playerSprite.run(startLevelSequence)
     }
     
     
@@ -330,7 +310,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let bullet = SKSpriteNode(imageNamed: "bullet")
         bullet.name = "Bullet"
         bullet.setScale(1)
-        bullet.position = player.position
+        bullet.position = self.player.playerSprite.position
         bullet.zPosition = 1
         
         bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size)
@@ -415,29 +395,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let pointOfTouch = touch.location(in: self)
             let previousPointOfTouch = touch.previousLocation(in: self)
             let amountDragged = pointOfTouch.x - previousPointOfTouch.x
+            let currentPostition = self.player.getPosition()
+            let currentSize = self.player.getSize()
             
             if currentGameState == gameState.inGame{
-                player.position.x += amountDragged
+                self.player.moveTo(point: CGPoint(x: currentPostition.x + amountDragged, y: currentPostition.y))
             }
             
-            if player.position.x > gameArea.maxX - player.size.width*1.5 {
-                player.position.x = gameArea.maxX - player.size.width*1.5
-                
+            if currentPostition.x > gameArea.maxX - currentSize.width*1.5 {
+                self.player.moveTo(point: CGPoint(x: gameArea.maxX - currentSize.width*1.5, y: currentPostition.y))
             }
-            if player.position.x < gameArea.minX + player.size.width*1.5{
-                player.position.x = gameArea.minX + player.size.width*1.5
-                
+            if currentPostition.x < gameArea.minX + currentSize.width*1.5{
+                self.player.moveTo(point: CGPoint(x: gameArea.minX + currentSize.width*1.5, y: currentPostition.y))
             }
-            if player.position.x < fingerLocation.x{
-                
-                let flip = SKAction.scaleX(to: -1, duration: 0)
-                player.setScale(1.0)
-                let changeColor = SKAction.run( { self.player.texture = SKTexture(imageNamed: "playerCat")})
-                let action = SKAction.sequence([flip, changeColor] )
-                player.run(action)
-                
+            if pointOfTouch.x < previousPointOfTouch.x {
+                // rotate animation
+                self.player.flip(direction: Player.FacingDirection.left)
             } else{
-                player.setScale(1);
+                self.player.flip(direction: Player.FacingDirection.right)
             }
             
         }
@@ -476,9 +451,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let myTransition = SKTransition.fade(withDuration: 0.5)
         self.view!.presentScene(sceneToMoveTo, transition: myTransition)
     }
-    
-    
-    
 }
 
 
