@@ -76,8 +76,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // create player
         self.player = Player()
-        self.player.playerSprite.position = CGPoint(x: self.size.width/2, y: -self.size.height )
-        self.addChild(self.player.playerSprite)
+        self.player.sprite.position = CGPoint(x: self.size.width/2, y: -self.size.height )
+        self.addChild(self.player.sprite)
         
         scoreLabel.text = "Score: 0"
         scoreLabel.fontSize = 60
@@ -167,7 +167,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let startLevelAction = SKAction.run(startNewLevel)
         let startLevelSequence = SKAction.sequence([moveCatOnToScreenAction, startLevelAction])
         
-        self.player.playerSprite.run(startLevelSequence)
+        self.player.sprite.run(startLevelSequence)
     }
     
     
@@ -296,7 +296,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // розробка кігтиків і атаки + звук
     func fireBullet() {
         player.createBullet { bullet in
-            self.addChild(bullet.bullet)
+            self.addChild(bullet.sprite)
             bullet.start(screenSize: self.size)
         }
     }

@@ -9,39 +9,36 @@ import Foundation
 import SpriteKit
 
 class Player {
-    let playerSprite: SKSpriteNode
+    let sprite: SKSpriteNode
     enum FacingDirection {
         case left
         case right
     }
     
     init() {
-        self.playerSprite = SKSpriteNode(imageNamed: "playerCat")
-        playerSprite.setScale(1)
+        self.sprite = SKSpriteNode(imageNamed: "playerCat")
+        sprite.setScale(1)
         
-        // x:self.frame.midX, y:player.size.height/2 + 10
-        // x: self.size.width/2, y: self.size.height * 0.2
+        sprite.zPosition = 2
         
-        playerSprite.zPosition = 2
+        sprite.physicsBody = SKPhysicsBody(rectangleOf: sprite.size)
+        sprite.physicsBody!.affectedByGravity = false
         
-        playerSprite.physicsBody = SKPhysicsBody(rectangleOf: playerSprite.size)
-        playerSprite.physicsBody!.affectedByGravity = false
-        
-        playerSprite.physicsBody!.categoryBitMask = PhysicsCategories.Player
-        playerSprite.physicsBody!.collisionBitMask = PhysicsCategories.None
-        playerSprite.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
+        sprite.physicsBody!.categoryBitMask = PhysicsCategories.Player
+        sprite.physicsBody!.collisionBitMask = PhysicsCategories.None
+        sprite.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
     }
     
     func getPosition() -> CGPoint {
-        return self.playerSprite.position
+        return self.sprite.position
     }
     
     func getSize() -> CGSize {
-        return self.playerSprite.size
+        return self.sprite.size
     }
     
     func moveTo(point: CGPoint) {
-        self.playerSprite.position = point
+        self.sprite.position = point
     }
     
     func flip(direction: FacingDirection) {
@@ -52,11 +49,11 @@ class Player {
         case .right:
             action = SKAction.scaleX(to: 1, duration: 0.1)
         }
-        self.playerSprite.run(action)
+        self.sprite.run(action)
     }
     
     func createBullet(onCreate: (Bullet) -> Void) {
-        let bullet = Bullet(position: playerSprite.position)
+        let bullet = Bullet(position: sprite.position)
         onCreate(bullet)
     }
 }
