@@ -121,24 +121,15 @@
 		4A89E3A4273738DE0027B9BB /* CatsHome */ = {
 			isa = PBXGroup;
 			children = (
+				4AC1C9F2274D6C5300396D79 /* Assets */,
+				4AC1C9F1274D6C4200396D79 /* Utils */,
+				4AC1C9F0274D6C2B00396D79 /* Scenes */,
+				4AC1C9EF274D6C0700396D79 /* GameObjects */,
 				4A89E3E027373B120027B9BB /* Info.plist */,
 				4A89E3A5273738DE0027B9BB /* AppDelegate.swift */,
 				4A89E3A7273738DE0027B9BB /* GameScene.sks */,
 				4A89E3A9273738DE0027B9BB /* Actions.sks */,
-				4A89E3AB273738DE0027B9BB /* GameScene.swift */,
-				4A89E3D827373A070027B9BB /* GameOverScene.swift */,
-				4AC3D540274308E30092451B /* GameStartScene.swift */,
 				4A89E3AD273738DE0027B9BB /* GameViewController.swift */,
-				4A89E3AF273738DE0027B9BB /* Main.storyboard */,
-				4A89E3B2273738E10027B9BB /* Assets.xcassets */,
-				4A89E3B4273738E10027B9BB /* LaunchScreen.storyboard */,
-				4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */,
-				4A89E3DC27373A730027B9BB /* vaseFall.mp3 */,
-				4AC1C9E5274D529B00396D79 /* Player.swift */,
-				4AC1C9E7274D595600396D79 /* Constants.swift */,
-				4AC1C9E9274D61F400396D79 /* Bullet.swift */,
-				4AC1C9EB274D65BE00396D79 /* Enemy.swift */,
-				4AC1C9ED274D673400396D79 /* Utils.swift */,
 			);
 			path = CatsHome;
 			sourceTree = "<group>";
@@ -158,6 +149,47 @@
 				4A89E3CB273738E10027B9BB /* CatsHomeUITestsLaunchTests.swift */,
 			);
 			path = CatsHomeUITests;
+			sourceTree = "<group>";
+		};
+		4AC1C9EF274D6C0700396D79 /* GameObjects */ = {
+			isa = PBXGroup;
+			children = (
+				4AC1C9E9274D61F400396D79 /* Bullet.swift */,
+				4AC1C9EB274D65BE00396D79 /* Enemy.swift */,
+				4AC1C9E5274D529B00396D79 /* Player.swift */,
+			);
+			path = GameObjects;
+			sourceTree = "<group>";
+		};
+		4AC1C9F0274D6C2B00396D79 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4A89E3AB273738DE0027B9BB /* GameScene.swift */,
+				4A89E3D827373A070027B9BB /* GameOverScene.swift */,
+				4AC3D540274308E30092451B /* GameStartScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4AC1C9F1274D6C4200396D79 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4AC1C9E7274D595600396D79 /* Constants.swift */,
+				4AC1C9ED274D673400396D79 /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		4AC1C9F2274D6C5300396D79 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4A89E3DA27373A6F0027B9BB /* pewPoP.mp3 */,
+				4A89E3DC27373A730027B9BB /* vaseFall.mp3 */,
+				4A89E3B2273738E10027B9BB /* Assets.xcassets */,
+				4A89E3B4273738E10027B9BB /* LaunchScreen.storyboard */,
+				4A89E3AF273738DE0027B9BB /* Main.storyboard */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
