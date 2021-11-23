@@ -38,15 +38,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var currentGameState = gameState.preGame
     
-    
-    func random() -> CGFloat{
-        return CGFloat(Float(arc4random()) / Float(0xFFFFFFFF))
-    }
-    
-    func random(min: CGFloat, max: CGFloat) -> CGFloat {
-        return random() * (max - min) + min
-    }
-    
     var gameArea: CGRect
     
     override init(size: CGSize) {
@@ -311,45 +302,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func spawnEnemy() {
-        
-        let randomXStart = random(min: gameArea.minX, max: gameArea.maxX)
-        let randomXEnd = random(min: gameArea.minX, max: gameArea.maxX)
-        let startPoint = CGPoint(x: randomXStart, y: self.size.height*1.2)
-        let endPoint = CGPoint(x: randomXEnd/3, y: -self.size.height*1.2)
-        
-        let enemy = SKSpriteNode(imageNamed: "enemyVase")
-        enemy.name = "Enemy"
-        enemy.setScale(1)
-        enemy.position = startPoint
-        enemy.zPosition = 2
-        
-        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
-        enemy.physicsBody!.affectedByGravity = false
-        
-        enemy.physicsBody!.categoryBitMask = PhysicsCategories.Enemy
-        enemy.physicsBody!.collisionBitMask = PhysicsCategories.None
-        enemy.physicsBody!.contactTestBitMask = PhysicsCategories.Bullet | PhysicsCategories.Player
-        
-        
-        
-        
-        self.addChild(enemy)
-        
-        let moveEnemy = SKAction.move(to: endPoint, duration: 5) // замінити на менше число!
-        let deleteEnemy = SKAction.removeFromParent()
-        let loseALifeAction = SKAction.run(loseLives)
-        let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy, loseALifeAction])
-        
-        if currentGameState == gameState.inGame{
-            enemy.run(enemySequence)
+        let enemy = Enemy(gameArea: gameArea)
+        self.addChild(enemy.sprite)
+        enemy.start {
+            self.loseLives()
         }
-        
-        let dx = endPoint.x - startPoint.x
-        let dy = endPoint.y - startPoint.y
-        let amoundToRotate = atan2(dx, dy)
-        
-        enemy.zRotation = amoundToRotate
-        
     }
     
     // стріляє, коли тикаєш
