@@ -14,10 +14,10 @@ var gameScore = 0
 
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-        
+    
     let scoreLabel = SKLabelNode(fontNamed:"mangat")
     
-    var livesNumb = 5 
+    var livesNumb = 5
     let livesLabel = SKLabelNode(fontNamed:"mangat")
     
     var levelNumber = 0
@@ -25,7 +25,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var fingerLocation = CGPoint()
     var player = SKSpriteNode(imageNamed: "playerCat")
-   
+    
     let bulletSound = SKAction.playSoundFileNamed("pewPoP0.mp3", waitForCompletion: false)
     let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
     
@@ -61,7 +61,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameArea: CGRect
     
     override init(size: CGSize) {
-        let maxAspectRatio: CGFloat = (19.0/15.0) 
+        let maxAspectRatio: CGFloat = (19.0/15.0)
         let playebleWigth = (size.height / maxAspectRatio)
         let margin = ((size.width - playebleWigth) / 2.0)
         
@@ -74,7 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-  
+    
     
     // розміщення бекграунда + гравець
     override func didMove(to view: SKView) {
@@ -84,20 +84,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.contactDelegate = self
         
         for i in 0 ... 1{
-        let background = SKSpriteNode(imageNamed: "background")
-        background.size = self.size
-        background.anchorPoint = CGPoint(x: 0.5, y: 0)
-        background.position = CGPoint(x: self.size.width/2, y: self.size.height*CGFloat(i))
-        background.zPosition = 0
-        background.name = "Background"
-        self.addChild(background)
+            let background = SKSpriteNode(imageNamed: "background")
+            background.size = self.size
+            background.anchorPoint = CGPoint(x: 0.5, y: 0)
+            background.position = CGPoint(x: self.size.width/2, y: self.size.height*CGFloat(i))
+            background.zPosition = 0
+            background.name = "Background"
+            self.addChild(background)
         }
         
         player.setScale(1)
         player.position = CGPoint(x: self.size.width/2, y: -self.size.height )
         
-// x:self.frame.midX, y:player.size.height/2 + 10
-// x: self.size.width/2, y: self.size.height * 0.2
+        // x:self.frame.midX, y:player.size.height/2 + 10
+        // x: self.size.width/2, y: self.size.height * 0.2
         
         player.zPosition = 2
         
@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody!.categoryBitMask = PhysicsCategories.Player
         player.physicsBody!.collisionBitMask = PhysicsCategories.None
         player.physicsBody!.contactTestBitMask = PhysicsCategories.Enemy
-    
+        
         self.addChild(player)
         
         scoreLabel.text = "Score: 0"
@@ -139,10 +139,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tapToStartLabel.alpha = 0
         tapToStartLabel.zPosition = 100
         addChild(tapToStartLabel)
-
+        
         let fadeInAction = SKAction.fadeIn(withDuration: 0.3)
         tapToStartLabel.run(fadeInAction)
-
+        
         startNewLevel()
     }
     
@@ -162,14 +162,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let amountToMoveBackground = amountToMovePerSecond * CGFloat(delfaFrameTime)
         self.enumerateChildNodes(withName: "Background"){
             background, stop in
-           
+            
             if self.currentGameState == gameState.inGame{
-            background.position.y -= amountToMoveBackground
+                background.position.y -= amountToMoveBackground
             }
             
             if background.position.y < (-self.size.height){
-               background.position.y += self.size.height*2
-          
+                background.position.y += self.size.height*2
+                
             }
             
         }
@@ -186,22 +186,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startGame(){
-
+        
         currentGameState = gameState.inGame
-
+        
         let fadeOutAction = SKAction.fadeOut(withDuration: 0.5)
         let deleteAction = SKAction.removeFromParent()
         let deleteSequence = SKAction.sequence([fadeOutAction, deleteAction])
         tapToStartLabel.run(deleteSequence)
-
+        
         let moveCatOnToScreenAction = SKAction.moveTo(y: self.size.width/3.5, duration: 0.5)
         let startLevelAction = SKAction.run(startNewLevel)
         let startLevelSequence = SKAction.sequence([moveCatOnToScreenAction, startLevelAction])
-
+        
         player.run(startLevelSequence)
     }
     
-  
+    
     
     func loseLives(){
         
@@ -236,20 +236,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             addScore()
             
-                    if body2.node != nil{
-                        if body2.node!.position.y > self.size.height{
-                            return // якщо ворог знаходиться за межами верхньої частини екрана, «поверніться». Це припинить виконання цього коду тут, тому нічого не робитимемо, якщо ми не вдаримо ворога, коли він на екрані.
-                        }
-                        else{
-                        spawnExplosion(spawnPosition: body2.node!.position)
-                        }
-                    }
-                    body1.node?.removeFromParent()
-                    body2.node?.removeFromParent()
-                    
-                    
+            if body2.node != nil{
+                if body2.node!.position.y > self.size.height{
+                    return // якщо ворог знаходиться за межами верхньої частини екрана, «поверніться». Це припинить виконання цього коду тут, тому нічого не робитимемо, якщо ми не вдаримо ворога, коли він на екрані.
                 }
-    
+                else{
+                    spawnExplosion(spawnPosition: body2.node!.position)
+                }
+            }
+            body1.node?.removeFromParent()
+            body2.node?.removeFromParent()
+            
+            
+        }
+        
         
         // якщо гравець влупився лицем в ворога
         if body1.categoryBitMask == PhysicsCategories.Player && body2.categoryBitMask == PhysicsCategories.Enemy{
@@ -258,7 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             spawnExplosion(spawnPosition: body2.node!.position)
             
             
-
+            
             if body1.node != nil{
                 spawnExplosion(spawnPosition: body1.node!.position)
             }
@@ -270,7 +270,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             body2.node?.removeFromParent()
             
             runGameOver()
-
+            
         }
         
     }
@@ -381,7 +381,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy, loseALifeAction])
         
         if currentGameState == gameState.inGame{
-        enemy.run(enemySequence)
+            enemy.run(enemySequence)
         }
         
         let dx = endPoint.x - startPoint.x
@@ -394,17 +394,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // стріляє, коли тикаєш
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
+        
         for touch: AnyObject in touches {
-                fingerLocation = touch.location(in: self)
-
-            }
+            fingerLocation = touch.location(in: self)
+            
+        }
         
         if currentGameState == gameState.preGame{
             startGame()
         }
         else if currentGameState == gameState.inGame{
-        fireBullet()
+            fireBullet()
         }
     }
     
@@ -417,9 +417,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let amountDragged = pointOfTouch.x - previousPointOfTouch.x
             
             if currentGameState == gameState.inGame{
-            player.position.x += amountDragged
+                player.position.x += amountDragged
             }
-           
+            
             if player.position.x > gameArea.maxX - player.size.width*1.5 {
                 player.position.x = gameArea.maxX - player.size.width*1.5
                 
@@ -439,7 +439,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             } else{
                 player.setScale(1);
             }
-                
+            
         }
         
         
@@ -463,12 +463,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let changeSceneAction = SKAction.run(changeScene)
         let waitToChangeScene = SKAction.wait(forDuration: 1)
         let changeSceneSequence = SKAction.sequence([waitToChangeScene, changeSceneAction])
-    
+        
         self.run(changeSceneSequence)
         
         
     }
-
+    
     func changeScene(){
         let sceneToMoveTo = GameOverScene(size: self.size)
         sceneToMoveTo.scaleMode = self.scaleMode
@@ -480,5 +480,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
 }
- 
+
 
