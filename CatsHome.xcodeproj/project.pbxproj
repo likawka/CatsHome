@@ -26,6 +26,7 @@
 		4AC1C9EA274D61F400396D79 /* Bullet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9E9274D61F400396D79 /* Bullet.swift */; };
 		4AC1C9EC274D65BE00396D79 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9EB274D65BE00396D79 /* Enemy.swift */; };
 		4AC1C9EE274D673400396D79 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9ED274D673400396D79 /* Utils.swift */; };
+		4AC1C9F4274D6FA800396D79 /* Explosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC1C9F3274D6FA800396D79 /* Explosion.swift */; };
 		4AC3D541274308E30092451B /* GameStartScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC3D540274308E30092451B /* GameStartScene.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		4AC1C9E9274D61F400396D79 /* Bullet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullet.swift; sourceTree = "<group>"; };
 		4AC1C9EB274D65BE00396D79 /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
 		4AC1C9ED274D673400396D79 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		4AC1C9F3274D6FA800396D79 /* Explosion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Explosion.swift; sourceTree = "<group>"; };
 		4AC3D540274308E30092451B /* GameStartScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStartScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 				4AC1C9E9274D61F400396D79 /* Bullet.swift */,
 				4AC1C9EB274D65BE00396D79 /* Enemy.swift */,
 				4AC1C9E5274D529B00396D79 /* Player.swift */,
+				4AC1C9F3274D6FA800396D79 /* Explosion.swift */,
 			);
 			path = GameObjects;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				4A89E3D927373A070027B9BB /* GameOverScene.swift in Sources */,
 				4AC1C9E8274D595600396D79 /* Constants.swift in Sources */,
 				4AC1C9EE274D673400396D79 /* Utils.swift in Sources */,
+				4AC1C9F4274D6FA800396D79 /* Explosion.swift in Sources */,
 				4AC1C9EC274D65BE00396D79 /* Enemy.swift in Sources */,
 				4AC1C9E6274D529B00396D79 /* Player.swift in Sources */,
 				4A89E3A6273738DE0027B9BB /* AppDelegate.swift in Sources */,

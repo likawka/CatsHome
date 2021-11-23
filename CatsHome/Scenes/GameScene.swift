@@ -24,7 +24,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     var fingerLocation = CGPoint()
-    let explosionSound = SKAction.playSoundFileNamed("vaseFall.mp3", waitForCompletion: false)
     
     let tapToStartLabel = SKLabelNode(fontNamed: "mangat")
     var player: Player
@@ -246,21 +245,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func spawnExplosion(spawnPosition: CGPoint ){
-        
-        let explosion = SKSpriteNode(imageNamed: "explosion")
-        explosion.position = spawnPosition
-        explosion.zPosition = 3
-        explosion.setScale(0)
-        self.addChild(explosion)
-        
-        let scaleIn = SKAction.scale(to: 1.5, duration: 0.1)
-        let fadeOut = SKAction.fadeOut(withDuration: 0.1)
-        let delete = SKAction.removeFromParent()
-        
-        let explosionSequence = SKAction.sequence([explosionSound, scaleIn, fadeOut, delete])
-        
-        explosion.run(explosionSequence)
-        // 32:00
+        let explosion = Explosion(spawnPosition: spawnPosition)
+        self.addChild(explosion.sprite)
     }
     
     
