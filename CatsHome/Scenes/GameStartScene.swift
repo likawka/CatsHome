@@ -26,7 +26,7 @@ class GameStartScene: SKScene {
         gameBy.text = "Iryna Zinko"
         gameBy.fontSize = 50
         gameBy.fontColor = .black
-        gameBy.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.68)
+        gameBy.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.58)
         gameBy.zPosition = 1
         addChild(gameBy)
         
@@ -34,7 +34,7 @@ class GameStartScene: SKScene {
         nameGame.text = "Cat's Home"
         nameGame.fontSize = 175
         nameGame.fontColor = .black
-        nameGame.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.6)
+        nameGame.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.5)
         nameGame.zPosition = 1
         addChild(nameGame)
         
@@ -42,7 +42,7 @@ class GameStartScene: SKScene {
         startGame.text = "Start Game"
         startGame.fontSize = 150
         startGame.fontColor = .black
-        startGame.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.4)
+        startGame.position = CGPoint(x: self.size.width * 0.5, y: self.size.height * 0.39)
         startGame.zPosition = 1
         startGame.name = "startButton"
         addChild(startGame)

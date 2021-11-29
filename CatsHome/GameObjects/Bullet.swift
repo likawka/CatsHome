@@ -15,7 +15,7 @@ class Bullet: SKNode {
     init(position: CGPoint) {
         sprite = SKSpriteNode(imageNamed: "bullet")
         sprite.name = "Bullet"
-        sprite.setScale(1)
+        sprite.setScale(0.05)
         sprite.position = position
         sprite.zPosition = 1
         

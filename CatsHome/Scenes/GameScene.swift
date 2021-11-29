@@ -29,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentGameState = gameState.preGame
     var gameArea: CGRect
     
+    
     override init(size: CGSize) {
         let maxAspectRatio: CGFloat = (19.0/15.0)
         let playebleWigth = (size.height / maxAspectRatio)
@@ -79,7 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let amountToMoveBackground = amountToMovePerSecond * CGFloat(delfaFrameTime)
-        self.enumerateChildNodes(withName: "Background"){
+        hud.enumerateChildNodes(withName: "Background"){
             background, stop in
             
             if self.currentGameState == gameState.inGame{
@@ -88,11 +89,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if background.position.y < (-self.size.height){
                 background.position.y += self.size.height*2
-                
             }
-            
         }
-        
     }
     
     func addScore(){

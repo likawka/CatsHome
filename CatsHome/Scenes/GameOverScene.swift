@@ -39,7 +39,7 @@ class GameOverScene: SKScene {
         scoreLabel.fontSize = 140
         scoreLabel.fontColor = .black
         scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        scoreLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.5)
+        scoreLabel.position = CGPoint(x: self.size.width * 0.22, y: self.size.height * 0.48)
         scoreLabel.zPosition = 1
         addChild(scoreLabel)
         
@@ -66,7 +66,7 @@ class GameOverScene: SKScene {
         restartLabel.fontSize = 160
         restartLabel.fontColor = .black
         restartLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
-        restartLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.26)
+        restartLabel.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.28)
         restartLabel.zPosition = 1
         addChild(restartLabel)
         
